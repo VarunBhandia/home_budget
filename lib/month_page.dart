@@ -21,18 +21,21 @@ class _MonthPageState extends State<MonthPage> {
     Month month = await helper.queryMonth(rowId);
     monthName = month.name;
     setState(() {
-      monthName:month.name;
+      monthName:
+      month.name;
     });
-    print(monthName );
+    print(monthName);
   }
 
-  void _initState(){
-    _readDB(widget.id);
-  }
   @override
   Widget build(BuildContext context) {
+    double labelTextFieldWidth = MediaQuery.of(context).size.width / 6;
+    double inputTextFieldWidth = MediaQuery.of(context).size.width / 4;
+    double monthParentContainerSize = MediaQuery.of(context).size.width *.7;
+    double monthParentContainerLeftMargin = MediaQuery.of(context).size.width *.1;
 
     _readDB(widget.id);
+
     return Scaffold(
       backgroundColor: scaffoldTextColor,
       appBar: AppBar(
@@ -49,9 +52,121 @@ class _MonthPageState extends State<MonthPage> {
         ),
         backgroundColor: appBarBackgroundColor,
       ),
-      body: Center(
-        child: Text(monthName),
-      ),
+      body: Container(
+        width: monthParentContainerSize,
+        margin: EdgeInsets.only(left: monthParentContainerLeftMargin),
+        child: Column(
+          children: <Widget>[
+            SizedBox(height: 20),
+            Row(
+              children: <Widget>[
+                Text(
+                  'Month Expeditures',
+                  style: TextStyle(
+                    fontSize: monthHeadingSize,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+            Row(
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.all(6),
+                  width: labelTextFieldWidth,
+                  child: Text(
+                    'Milk : ',
+                    style: TextStyle(
+                      fontSize: monthTextFieldSize,
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(6),
+                  width: inputTextFieldWidth,
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    style: TextStyle(fontSize: monthTextFieldSize),
+                    decoration: InputDecoration(hintText: 'Enter milk bill'),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+            Row(
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.all(6),
+                  width: labelTextFieldWidth,
+                  child: Text(
+                    'Milk : ',
+                    style: TextStyle(
+                      fontSize: monthTextFieldSize,
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(6),
+                  width: inputTextFieldWidth,
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    style: TextStyle(fontSize: monthTextFieldSize),
+                    decoration: InputDecoration(hintText: 'Enter milk bill'),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+            Row(
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.all(6),
+                  width: labelTextFieldWidth,
+                  child: Text(
+                    'Milk : ',
+                    style: TextStyle(
+                      fontSize: monthTextFieldSize,
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(6),
+                  width: inputTextFieldWidth,
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    style: TextStyle(fontSize: monthTextFieldSize),
+                    decoration: InputDecoration(hintText: 'Enter milk bill'),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+            Row(
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.all(6),
+                  width: labelTextFieldWidth,
+                  child: Text(
+                    'Milk : ',
+                    style: TextStyle(
+                      fontSize: monthTextFieldSize,
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(6),
+                  width: inputTextFieldWidth,
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    style: TextStyle(fontSize: monthTextFieldSize),
+                    decoration: InputDecoration(hintText: 'Enter milk bill'),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      )
     );
   }
 }

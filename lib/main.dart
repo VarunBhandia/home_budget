@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Home Budget',
-      theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Rubik'),
+      theme: ThemeData(primarySwatch: Colors.blue),
       home: MyHomePage(title: 'Home Budget'),
     );
   }

@@ -19,8 +19,8 @@ class _MyHomePageState extends State<MyHomePage> {
     double monthContainerHeight = monthContainerWidth;
     final monthContainerMargin = EdgeInsets.all(monthContainerWidth / 6);
 
-    final monthTextColor = Colors.grey[300];
-    double monthTextSize = 40.0;
+
+
     _openMonthWidget(int id) {
       Navigator.push(
           context,
