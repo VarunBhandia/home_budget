@@ -81,7 +81,7 @@ class DatabaseHelper {
     return id;
   }
 
-  Future<Month> queryUser(int id) async {
+  Future<Month> queryMonth(int id) async {
     Database db = await database;
     List<Map> maps = await db.query(tableMonths,
         columns: [monthId, monthName],
