@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'constant.dart';
+import 'database_helper.dart';
 
 class MonthPage extends StatefulWidget {
   MonthPage({Key key, this.id}) : super(key: key);
@@ -11,8 +12,27 @@ class MonthPage extends StatefulWidget {
 }
 
 class _MonthPageState extends State<MonthPage> {
+  String monthName = '';
+
+  void _readDB(int id) async {
+    print('Reading local DB');
+    DatabaseHelper helper = DatabaseHelper.instance;
+    int rowId = id;
+    Month month = await helper.queryMonth(rowId);
+    monthName = month.name;
+    setState(() {
+      monthName:month.name;
+    });
+    print(monthName );
+  }
+
+  void _initState(){
+    _readDB(widget.id);
+  }
   @override
   Widget build(BuildContext context) {
+
+    _readDB(widget.id);
     return Scaffold(
       backgroundColor: scaffoldTextColor,
       appBar: AppBar(
@@ -21,7 +41,7 @@ class _MonthPageState extends State<MonthPage> {
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: Text(
-          "Month Name",
+          monthName,
           style: TextStyle(
             fontSize: appBarTextSize,
             color: appBarTextColor,
@@ -30,7 +50,7 @@ class _MonthPageState extends State<MonthPage> {
         backgroundColor: appBarBackgroundColor,
       ),
       body: Center(
-        child: Text(widget.id.toString()),
+        child: Text(monthName),
       ),
     );
   }

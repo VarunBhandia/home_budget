@@ -25,7 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
       Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => MonthPage(id:id),
+            builder: (context) => MonthPage(id: id),
           ));
     }
 
@@ -65,32 +65,38 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                 ),
-                Container(
-                  margin: monthContainerMargin,
-                  color: monthContainerColor,
-                  width: monthContainerWidth,
-                  height: monthContainerHeight,
-                  child: Center(
-                    child: Text(
-                      'June',
-                      style: TextStyle(
-                        fontSize: monthTextSize,
-                        color: monthTextColor,
+                GestureDetector(
+                  onTap: () => _openMonthWidget(2),
+                  child: Container(
+                    margin: monthContainerMargin,
+                    color: monthContainerColor,
+                    width: monthContainerWidth,
+                    height: monthContainerHeight,
+                    child: Center(
+                      child: Text(
+                        'June',
+                        style: TextStyle(
+                          fontSize: monthTextSize,
+                          color: monthTextColor,
+                        ),
                       ),
                     ),
                   ),
                 ),
-                Container(
-                  margin: monthContainerMargin,
-                  color: monthContainerColor,
-                  width: monthContainerWidth,
-                  height: monthContainerHeight,
-                  child: Center(
-                    child: Text(
-                      'July',
-                      style: TextStyle(
-                        fontSize: monthTextSize,
-                        color: monthTextColor,
+                GestureDetector(
+                  onTap: () => _openMonthWidget(3),
+                  child: Container(
+                    margin: monthContainerMargin,
+                    color: monthContainerColor,
+                    width: monthContainerWidth,
+                    height: monthContainerHeight,
+                    child: Center(
+                      child: Text(
+                        'July',
+                        style: TextStyle(
+                          fontSize: monthTextSize,
+                          color: monthTextColor,
+                        ),
                       ),
                     ),
                   ),
