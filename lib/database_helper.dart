@@ -3,31 +3,31 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 
-final String tableUsers = 'users';
-final String columnId = '_id';
-final String columnUser = 'username';
+final String tableMonths = 'months';
+final String monthId = '_id';
+final String monthName = 'name';
 
 // data model class
-class User {
+class Month {
 
   int id;
-  String user;
+  String name;
 
-  User();
+  Month();
 
   // convenience constructor to create a User object
-  User.fromMap(Map<String, dynamic> map) {
-    id = map[columnId];
-    user = map[columnUser];
+  Month.fromMap(Map<String, dynamic> map) {
+    id = map[monthId];
+    name = map[monthName];
   }
 
   // convenience method to create a Map from this User object
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{
-      columnUser: user,
+      monthName: name,
     };
     if (id != null) {
-      map[columnId] = id;
+      map[monthId] = id;
     }
     return map;
   }
@@ -37,7 +37,7 @@ class User {
 class DatabaseHelper {
 
   // This is the actual database filename that is saved in the docs directory.
-  static final _databaseName = "MyDatabase.db";
+  static final _databaseName = "home_budget.db";
   // Increment this version when you need to change the schema.
   static final _databaseVersion = 1;
 
@@ -67,52 +67,52 @@ class DatabaseHelper {
   // SQL string to create the database
   Future _onCreate(Database db, int version) async {
     await db.execute('''
-          CREATE TABLE $tableUsers(
-            $columnId INTEGER PRIMARY KEY,
-            $columnUser TEXT NOT NULL
+          CREATE TABLE $tableMonths(
+            $monthId INTEGER PRIMARY KEY,
+            $monthName TEXT NOT NULL
           )
           ''');
   }
 
   // Database helper methods:
-  Future<int> insert(User user) async {
+  Future<int> insert(Month month) async {
     Database db = await database;
-    int id = await db.insert(tableUsers, user.toMap());
+    int id = await db.insert(tableMonths, month.toMap());
     return id;
   }
 
-  Future<User> queryUser(int id) async {
+  Future<Month> queryUser(int id) async {
     Database db = await database;
-    List<Map> maps = await db.query(tableUsers,
-        columns: [columnId, columnUser],
-        where: '$columnId = ?',
+    List<Map> maps = await db.query(tableMonths,
+        columns: [monthId, monthName],
+        where: '$monthId = ?',
         whereArgs: [id]);
     if (maps.length > 0) {
-      return User.fromMap(maps.first);
+      return Month.fromMap(maps.first);
     }
     return null;
   }
 
-  Future<List<User>> queryAllUsers() async {
+  Future<List<Month>> queryAllMonths() async {
     Database db = await database;
-    List<Map> maps = await db.query(tableUsers);
+    List<Map> maps = await db.query(tableMonths);
     if (maps.length > 0) {
-      List<User> users = [];
-      maps.forEach((map) => users.add(User.fromMap(map)));
-      return users;
+      List<Month> months = [];
+      maps.forEach((map) => months.add(Month.fromMap(map)));
+      return months;
     }
     return null;
   }
 
   Future<int> deleteUser(int id) async {
     Database db = await database;
-    return await db.delete(tableUsers, where: '$columnId = ?', whereArgs: [id]);
+    return await db.delete(tableMonths, where: '$monthId = ?', whereArgs: [id]);
   }
 
-  Future<int> update(User user) async {
+  Future<int> update(Month month) async {
     Database db = await database;
-    return await db.update(tableUsers, user.toMap(),
-        where: '$columnId = ?', whereArgs: [user.id]);
+    return await db.update(tableMonths, month.toMap(),
+        where: '$monthId = ?', whereArgs: [month.id]);
   }
 
 }
