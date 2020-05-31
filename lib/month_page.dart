@@ -13,10 +13,22 @@ class MonthPage extends StatefulWidget {
 class _MonthPageState extends State<MonthPage> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: scaffoldTextColor,
-
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: appBarTextColor),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        title: Text(
+          "Month Name",
+          style: TextStyle(
+            fontSize: appBarTextSize,
+            color: appBarTextColor,
+          ),
+        ),
+        backgroundColor: appBarBackgroundColor,
+      ),
       body: Center(
         child: Text(widget.id.toString()),
       ),
