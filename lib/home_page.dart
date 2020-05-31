@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'constant.dart';
 import 'month_page.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -13,12 +14,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    final scaffoldTextColor = Colors.grey[300];
-
-    final appBarTextColor = Colors.grey[300];
-    final appBarBackgroundColor = Colors.blueAccent[200];
-    double appBarTextSize = 20.0;
-
     final monthContainerColor = Colors.blueAccent[200];
     double monthContainerWidth = MediaQuery.of(context).size.width / 4;
     double monthContainerHeight = monthContainerWidth;
@@ -26,14 +21,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final monthTextColor = Colors.grey[300];
     double monthTextSize = 40.0;
-
     _openMonthWidget(int id) {
       Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => MonthPage(id:id),
           ));
-      print('clicked');
     }
 
     return Scaffold(
